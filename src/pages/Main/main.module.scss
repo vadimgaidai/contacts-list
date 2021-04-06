@@ -36,7 +36,12 @@
 }
 
 .csv {
+  height: 47px;
   padding: 0;
+
+  @include media('mobile') {
+    height: 42px;
+  }
 
   a {
     display: flex;

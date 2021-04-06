@@ -66,7 +66,7 @@ const CreateContactModal: FC = () => {
           type="phone"
           name="phone"
           errorValue={touched.phone && errors.phone ? errors.phone : ''}
-          placeholder="Contact Name"
+          placeholder="Contact Phone"
         />
       </Form>
     </ModalWrapper>
