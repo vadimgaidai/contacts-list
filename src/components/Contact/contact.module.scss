@@ -22,6 +22,19 @@
   text-align: center;
 }
 
+.button {
+  position: absolute;
+  top: $spacer - 5;
+  right: $spacer - 5;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: opacity $transition;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
 .icon {
   color: transparent;
   fill: white;

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
 import { ContactType, ContactsStateType } from './types'
 
 const { actions, reducer } = createSlice({
@@ -11,10 +11,17 @@ const { actions, reducer } = createSlice({
       state: ContactsStateType,
       { payload }: PayloadAction<ContactType>
     ) {
-      state.contacts.push(payload)
+      state.contacts.push({ id: nanoid(), ...payload })
+    },
+    editContact(
+      state: ContactsStateType,
+      { payload }: PayloadAction<ContactType>
+    ) {
+      const index = state.contacts.findIndex(({ id }) => id === payload.id)
+      state.contacts.splice(index, 1, payload)
     },
   },
 })
 
-export const { addContact } = actions
+export const { addContact, editContact } = actions
 export default reducer

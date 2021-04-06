@@ -13,6 +13,7 @@ import { selectIsAuth } from './redux/user/selectors'
 import Login from './pages/Login'
 import Main from './pages/Main'
 import CreateContactModal from './components/modals/list/CreateContactModal'
+import EditContactModal from './components/modals/list/EditContactModal'
 
 const App: FC = () => {
   const isAuth = useSelector(selectIsAuth)
@@ -36,6 +37,7 @@ const App: FC = () => {
     <Switch>
       <Route path="/login" component={Login} exact />
       <Route path="/new" component={CreateContactModal} />
+      <Route path="/:id/edit" component={EditContactModal} />
       <Route path="/" component={Main} exact />
     </Switch>
   )

@@ -25,9 +25,9 @@ const Main: FC = () => {
       </div>
 
       <TransitionGroup className={style.grid}>
-        {contacts?.map(({ image, name, phone }, index) => (
-          <CSSTransition key={index} timeout={300} classNames="fade">
-            <Contact key={index} image={image} name={name} phone={phone} />
+        {contacts?.map(({ id, image, name, phone }) => (
+          <CSSTransition key={id} timeout={300} classNames="fade">
+            <Contact id={id} image={image} name={name} phone={phone} />
           </CSSTransition>
         ))}
       </TransitionGroup>
