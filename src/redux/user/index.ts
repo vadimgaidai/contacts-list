@@ -4,18 +4,14 @@ import { StateType, UserType } from './types'
 const { actions, reducer } = createSlice({
   name: 'user',
   initialState: {
-    user: {},
-    isAuth: false,
+    user: null,
   } as StateType,
   reducers: {
     setUser(state: StateType, { payload }: PayloadAction<UserType>) {
       state.user = payload
     },
-    setIsAuth(state: StateType, { payload }: PayloadAction<boolean>) {
-      state.isAuth = payload
-    },
   },
 })
 
-export const { setUser, setIsAuth } = actions
+export const { setUser } = actions
 export default reducer

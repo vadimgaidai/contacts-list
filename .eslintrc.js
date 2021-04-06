@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/eslint-plugin',
   ],
   rules: {
+    '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-use-before-define': 0,
     '@typescript-eslint/no-unused-vars': [

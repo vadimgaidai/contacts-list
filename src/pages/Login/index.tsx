@@ -1,6 +1,44 @@
-import { FC } from 'react'
+import { FC, ChangeEvent, useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import Form from '../../components/Form'
+import Input from '../../components/Input'
+import { setUser } from '../../redux/user'
+import { UserType } from '../../redux/user/types'
+
 import style from './login.module.scss'
 
-const Main: FC = () => <main>Login page</main>
+const Main: FC = () => {
+  const dispatch = useDispatch()
+  const [formData, setFormData] = useState<UserType>({
+    name: '',
+  })
+  const onSubmit = () => {
+    dispatch(setUser(formData))
+  }
+
+  const onInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      name: event.target.value,
+    }))
+  }
+  return (
+    <main className={style.section}>
+      <Form
+        title="SignIn"
+        styleButton="success"
+        buttonValue="Submit"
+        onSubmit={onSubmit}
+      >
+        <Input
+          value={formData.name}
+          placeholder="What's your name?"
+          onInput={onInput}
+        />
+      </Form>
+    </main>
+  )
+}
 
 export default Main

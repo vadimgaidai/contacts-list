@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { save, load } from 'redux-localstorage-simple'
 
 import user from './user'
 
@@ -11,7 +12,8 @@ const store = configureStore({
       immutableCheck: true,
       serializableCheck: true,
       thunk: false,
-    }),
+    }).concat(save()),
+  preloadedState: load(),
   devTools: process.env.NODE_ENV !== 'production',
 })
 

@@ -1,28 +1,5 @@
 .section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 15px;
-  color: white;
-  font-size: calc(10px + 2vmin);
-  text-align: center;
-
-  @include keyframesIcon();
-}
-
-.logo {
-  height: 40vmin;
-  animation: icon infinite 20s linear;
-  pointer-events: none;
-}
-
-.link {
-  color: $link;
-  text-decoration: none;
-  transition: all $transition ease-in;
-
-  &:hover {
-    color: rgba($link, 0.5);
-  }
+  display: grid;
+  width: 100%;
+  height: 100%;
 }

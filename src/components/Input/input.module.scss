@@ -1,0 +1,15 @@
+.input {
+  width: 100%;
+  margin-bottom: 22px;
+  padding: 14px 10px;
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 6px;
+  transition: border $transition;
+  &:hover {
+    border: 2px solid rgba(white, 0.7);
+  }
+}

@@ -3,6 +3,5 @@ export interface UserType {
 }
 
 export interface StateType {
-  user: UserType
-  isAuth: boolean
+  user: UserType | null
 }
