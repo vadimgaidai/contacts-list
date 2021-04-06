@@ -18,7 +18,7 @@ const ModalWrapper: FC<ModalWrapperType> = ({
   children,
   onVisible,
 }: ModalWrapperType) => {
-  const onClose = useCallback(() => onVisible(false), [])
+  const onClose = useCallback(() => onVisible(false), [onVisible])
 
   const onKeyDown = useCallback(
     ({ code }) => {

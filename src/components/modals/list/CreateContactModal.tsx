@@ -25,7 +25,7 @@ const CreateContactModal: FC = () => {
     initialValues: {
       name: '',
       phone: '',
-      image: `https://picsum.photos/200/300?random=${Math.floor(
+      image: `https://picsum.photos/150/150?random=${Math.floor(
         Math.random() * 100
       )}`,
     },

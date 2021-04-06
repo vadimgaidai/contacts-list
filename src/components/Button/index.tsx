@@ -9,6 +9,7 @@ const Button: FC<ButtonPropTypes> = ({
   href,
   target = '_self',
   disabled,
+  className,
   children,
   onClick,
 }: ButtonPropTypes) =>
@@ -20,6 +21,7 @@ const Button: FC<ButtonPropTypes> = ({
         style.button,
         style[styleButton],
         disabled && style.disabled,
+        className,
       ].join(' ')}
     >
       {children}
@@ -30,6 +32,7 @@ const Button: FC<ButtonPropTypes> = ({
         style.button,
         style[styleButton],
         disabled && style.disabled,
+        className,
       ].join(' ')}
       disabled={disabled}
       type={typeButton}
