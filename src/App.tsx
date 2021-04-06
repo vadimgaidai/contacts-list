@@ -12,6 +12,7 @@ import { selectIsAuth } from './redux/user/selectors'
 
 import Login from './pages/Login'
 import Main from './pages/Main'
+import CreateContactModal from './components/modals/list/CreateContactModal'
 
 const App: FC = () => {
   const isAuth = useSelector(selectIsAuth)
@@ -25,7 +26,7 @@ const App: FC = () => {
   useEffect(() => {
     if (!isAuth) {
       history.push('/login')
-    } else {
+    } else if (location.pathname === '/login') {
       history.push('/')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,6 +35,7 @@ const App: FC = () => {
   return (
     <Switch>
       <Route path="/login" component={Login} exact />
+      <Route path="/new" component={CreateContactModal} />
       <Route path="/" component={Main} exact />
     </Switch>
   )

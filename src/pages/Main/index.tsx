@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
+import { useHistory } from 'react-router-dom'
 import {
   selectContacts,
   selectIsContacts,
@@ -9,18 +10,17 @@ import {
 
 import Button from '../../components/Button'
 import Contact from '../../components/Contact'
-import CreateContactModal from '../../components/modals/list/CreateContactModal'
 
 import style from './main.module.scss'
 
 const Main: FC = () => {
-  const [isOpenContactModal, setIsOpenContactModal] = useState<boolean>(false)
+  const history = useHistory()
   const contacts = useSelector(selectContacts)
   const isContacts = useSelector(selectIsContacts)
   return (
     <main className={style.section}>
       <div className={style.wrapper}>
-        <Button onClick={() => setIsOpenContactModal(true)}>New Contact</Button>
+        <Button onClick={() => history.push('/new')}>New Contact</Button>
         <Button disabled={!isContacts}> Download CSV</Button>
       </div>
 
@@ -31,11 +31,6 @@ const Main: FC = () => {
           </CSSTransition>
         ))}
       </TransitionGroup>
-
-      <CreateContactModal
-        visible={isOpenContactModal}
-        onVisible={(isVisible) => setIsOpenContactModal(isVisible)}
-      />
     </main>
   )
 }

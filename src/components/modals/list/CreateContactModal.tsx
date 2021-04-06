@@ -1,28 +1,28 @@
 /* eslint-disable no-unused-expressions */
 import { ChangeEvent, FC, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+
+import { addContact } from '../../../redux/contacts'
+import { ContactType } from '../../../redux/contacts/types'
 
 import ModalWrapper from '../ModalWrapper'
 import Form from '../../Form'
 import Input from '../../Input'
-import { addContact } from '../../../redux/contacts'
-import { ContactType } from '../../../redux/contacts/types'
 
-interface CreateContactModalType {
-  visible: boolean
-  onVisible: (data: boolean) => void
-}
-
-const CreateContactModal: FC<CreateContactModalType> = ({
-  visible,
-  onVisible,
-}: CreateContactModalType) => {
+const CreateContactModal: FC = () => {
+  const history = useHistory()
+  const { pathname } = useLocation()
   const dispatch = useDispatch()
   const [formData, setFormData] = useState<ContactType>({
     name: '',
     phone: '',
     image: 'https://picsum.photos/id/200/300',
   })
+
+  const onVisible = (isVisible: boolean) => {
+    history.push(isVisible ? '/new' : '/')
+  }
 
   const onSubmit = () => {
     dispatch(addContact(formData))
@@ -37,7 +37,7 @@ const CreateContactModal: FC<CreateContactModalType> = ({
   }
 
   return (
-    <ModalWrapper visible={visible} onVisible={onVisible}>
+    <ModalWrapper visible={pathname === '/new'} onVisible={onVisible}>
       <Form
         title="New contact"
         styleButton="success"
