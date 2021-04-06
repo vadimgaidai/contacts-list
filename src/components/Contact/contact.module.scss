@@ -1,0 +1,28 @@
+.section {
+  position: relative;
+  display: grid;
+  width: 100%;
+  row-gap: 11px;
+  padding: $spacer - 5;
+  border: 3px solid rgba(white, 0.4);
+  border-radius: 8px;
+}
+
+.image {
+  justify-self: center;
+  width: 136px;
+  height: 136px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+.icon {
+  color: transparent;
+  fill: white;
+}

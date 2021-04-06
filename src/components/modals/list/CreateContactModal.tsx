@@ -6,6 +6,7 @@ import ModalWrapper from '../ModalWrapper'
 import Form from '../../Form'
 import Input from '../../Input'
 import { addContact } from '../../../redux/contacts'
+import { ContactType } from '../../../redux/contacts/types'
 
 interface CreateContactModalType {
   visible: boolean
@@ -17,14 +18,15 @@ const CreateContactModal: FC<CreateContactModalType> = ({
   onVisible,
 }: CreateContactModalType) => {
   const dispatch = useDispatch()
-  const [formData, setFormData] = useState({
-    image: 'https://picsum.photos/id/200/300',
+  const [formData, setFormData] = useState<ContactType>({
     name: '',
     phone: '',
+    image: 'https://picsum.photos/id/200/300',
   })
 
   const onSubmit = () => {
     dispatch(addContact(formData))
+    onVisible(false)
   }
 
   const onInput = (event: ChangeEvent<HTMLInputElement>) => {

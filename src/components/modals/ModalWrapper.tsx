@@ -1,7 +1,7 @@
 import { FC, ReactNode, useCallback, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { CSSTransition } from 'react-transition-group'
 import { X } from 'react-feather'
+import { CSSTransition } from 'react-transition-group'
 
 import { hidePageScrollbar, showPageScrollbar } from '../../utils/scrollbar'
 

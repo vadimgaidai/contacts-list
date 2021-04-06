@@ -8,5 +8,13 @@
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, minmax(auto, 240px));
+  margin-bottom: 40px;
   column-gap: 33px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 35px;
+  row-gap: 35px;
 }

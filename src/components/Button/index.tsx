@@ -19,7 +19,7 @@ const Button: FC<ButtonPropTypes> = ({
       className={[
         style.button,
         style[styleButton],
-        style.disabled && disabled,
+        disabled && style.disabled,
       ].join(' ')}
     >
       {children}
@@ -29,8 +29,9 @@ const Button: FC<ButtonPropTypes> = ({
       className={[
         style.button,
         style[styleButton],
-        style.disabled && disabled,
+        disabled && style.disabled,
       ].join(' ')}
+      disabled={disabled}
       type={typeButton}
       onClick={onClick}
     >
