@@ -2,6 +2,6 @@ export interface UserType {
   name: string
 }
 
-export interface StateType {
+export interface UserStateType {
   user: UserType | null
 }
