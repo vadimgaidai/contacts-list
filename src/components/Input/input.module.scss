@@ -1,6 +1,10 @@
+.label {
+  position: relative;
+}
+
 .input {
   width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 30px;
   padding: 14px 10px;
   color: white;
   font-weight: 400;
@@ -12,4 +16,20 @@
   &:hover {
     border: 2px solid rgba(white, 0.7);
   }
+}
+
+.error {
+  border: 2px solid $error;
+
+  &:hover {
+    border: 2px solid rgba($error, 0.7);
+  }
+}
+
+.errorValue {
+  position: absolute;
+  bottom: -37px;
+  left: 0;
+  color: $error;
+  font-size: 13px;
 }

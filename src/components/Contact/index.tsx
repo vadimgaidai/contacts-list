@@ -20,7 +20,13 @@ const Contact: FC<ContactType> = ({ id, image, name, phone }: ContactType) => {
       </button>
       <img src={image} alt={name} className={style.image} />
       <h3 className={style.name}>{name}</h3>
-      <Button href={`tel:${phone}`} styleButton="success">
+      <Button
+        href={`tel:${phone
+          .replace(/\(|\)/g, '')
+          .replace(/-/g, '')
+          .replace(/ /g, '')}`}
+        styleButton="success"
+      >
         <Phone className={style.icon} />
       </Button>
     </section>

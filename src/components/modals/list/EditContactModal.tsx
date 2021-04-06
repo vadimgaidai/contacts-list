@@ -1,6 +1,10 @@
-import { ChangeEvent, FC, useEffect, useMemo, useState } from 'react'
+/* eslint-disable react/jsx-props-no-spreading */
+import { FC, useMemo } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+
+import { phone, required } from '../../../utils/validation'
 
 import { editContact } from '../../../redux/contacts'
 import { ContactType } from '../../../redux/contacts/types'
@@ -16,34 +20,32 @@ const EditContactModal: FC = () => {
   const { id: contactId } = useParams<{ id: string }>()
   const contacts = useSelector(selectContacts)
 
-  const oneContact = useMemo((): ContactType => {
-    const contact = contacts?.find(({ id }) => id === contactId)
-    if (contact) {
-      return contact
-    }
-    return {
-      image: '',
-      name: '',
-      phone: '',
-    }
-  }, [contactId, contacts])
+  const oneContact = useMemo(
+    // @ts-ignore
+    (): ContactType => contacts?.find(({ id }) => id === contactId),
+    [contactId, contacts]
+  )
 
-  const [formData, setFormData] = useState<ContactType>({ ...oneContact })
   const onVisible = (isVisible: boolean) => {
     history.push(isVisible ? '/new' : '/')
   }
 
-  const onSubmit = () => {
-    dispatch(editContact(formData))
-    onVisible(false)
-  }
-
-  const onInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }))
-  }
+  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
+    initialValues: { ...oneContact },
+    validate({ name, phone: phoneNumber }) {
+      if (required(name) || phone(phoneNumber)) {
+        return {
+          name: required(name),
+          phone: phone(phoneNumber),
+        }
+      }
+      return {}
+    },
+    onSubmit(data) {
+      dispatch(editContact(data))
+      onVisible(false)
+    },
+  })
 
   return (
     <ModalWrapper visible={!!contactId} onVisible={onVisible}>
@@ -51,19 +53,23 @@ const EditContactModal: FC = () => {
         title="New contact"
         styleButton="success"
         buttonValue="Submit"
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         <Input
+          {...getFieldProps('name')}
+          id="name"
+          type="text"
           name="name"
-          value={formData.name}
+          errorValue={touched.name && errors.name ? errors.name : ''}
           placeholder="Contact Name"
-          onInput={onInput}
         />
         <Input
+          {...getFieldProps('phone')}
+          id="phone"
+          type="phone"
           name="phone"
-          value={formData.phone}
-          placeholder="Contact Phone"
-          onInput={onInput}
+          errorValue={touched.phone && errors.phone ? errors.phone : ''}
+          placeholder="Contact Name"
         />
       </Form>
     </ModalWrapper>

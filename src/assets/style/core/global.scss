@@ -124,7 +124,7 @@ main {
 
     &-active {
       opacity: 1;
-      transition: opacity $transition ease-in;
+      transition: opacity $transition;
     }
   }
 
@@ -132,7 +132,7 @@ main {
     opacity: 1;
     &-active {
       opacity: 0;
-      transition: opacity $transition ease-in-out;
+      transition: opacity $transition;
     }
   }
 }

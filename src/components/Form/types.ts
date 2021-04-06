@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent } from 'react'
+import { ReactNode } from 'react'
 
 export interface FormPropTypes {
   title: string
@@ -6,5 +6,5 @@ export interface FormPropTypes {
   buttonValue: string
   isLoading?: boolean
   children: ReactNode
-  onSubmit: (event: SyntheticEvent) => void
+  onSubmit: () => void
 }

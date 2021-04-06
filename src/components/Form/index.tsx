@@ -18,7 +18,7 @@ const Form: FC<FormPropTypes> = ({
 }: FormPropTypes) => {
   const onSubmitForm = (event: SyntheticEvent) => {
     event.preventDefault()
-    onSubmit(event)
+    onSubmit()
   }
   return (
     <form className={style.form} onSubmit={onSubmitForm}>

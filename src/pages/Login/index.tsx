@@ -1,6 +1,10 @@
-import { FC, ChangeEvent, useState } from 'react'
+/* eslint-disable react/jsx-props-no-spreading */
+import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { useFormik } from 'formik'
+
+import { required } from '../../utils/validation'
 
 import Form from '../../components/Form'
 import Input from '../../components/Input'
@@ -12,32 +16,40 @@ import style from './login.module.scss'
 const Main: FC = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const [formData, setFormData] = useState<UserType>({
-    name: '',
-  })
-  const onSubmit = () => {
-    dispatch(setUser(formData))
-    history.push('/')
-  }
 
-  const onInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      name: event.target.value,
-    }))
-  }
+  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
+    initialValues: {
+      name: '',
+    },
+    validate({ name }) {
+      if (required(name)) {
+        return {
+          name: required(name),
+        }
+      }
+      return {}
+    },
+    onSubmit(data) {
+      dispatch(setUser(data))
+      history.push('/')
+    },
+  })
+
   return (
     <main className={style.section}>
       <Form
         title="SignIn"
         styleButton="success"
         buttonValue="Submit"
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         <Input
-          value={formData.name}
+          {...getFieldProps('name')}
+          id="name"
+          type="text"
+          name="name"
+          errorValue={touched.name && errors.name ? errors.name : ''}
           placeholder="What's your name?"
-          onInput={onInput}
         />
       </Form>
     </main>
