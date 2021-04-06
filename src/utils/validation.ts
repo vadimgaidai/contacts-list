@@ -5,6 +5,15 @@ export function required(value: string): string {
   return ''
 }
 
+export function name(value: string): string {
+  let error
+  error = required(value)
+  if (!error && !/^([A-Za-z\s]*)$/.test(value)) {
+    error = 'Enter a valid name'
+  }
+  return error
+}
+
 export function phone(value: string): string {
   let error
   error = required(value)

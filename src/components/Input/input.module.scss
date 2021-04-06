@@ -13,6 +13,11 @@
   border: 2px solid white;
   border-radius: 6px;
   transition: border $transition;
+  @include media('mobile') {
+    margin-bottom: 25px;
+    padding: 10px 5px;
+    font-size: 16px;
+  }
   &:hover {
     border: 2px solid rgba(white, 0.7);
   }
@@ -32,4 +37,8 @@
   left: 0;
   color: $error;
   font-size: 13px;
+
+  @include media('mobile') {
+    bottom: -30px;
+  }
 }

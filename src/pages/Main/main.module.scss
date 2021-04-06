@@ -10,6 +10,15 @@
   grid-template-columns: repeat(2, minmax(auto, 240px));
   margin-bottom: 40px;
   column-gap: 33px;
+
+  @include media('tablet') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media('mobile') {
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+  }
 }
 
 .grid {
@@ -17,4 +26,11 @@
   grid-template-columns: repeat(3, 1fr);
   column-gap: 35px;
   row-gap: 35px;
+  @include media('tablet') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media('mobile') {
+    grid-template-columns: 1fr;
+  }
 }

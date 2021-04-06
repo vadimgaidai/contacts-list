@@ -10,6 +10,10 @@
   overflow-x: hidden;
   overflow-y: auto;
   background-color: $primary;
+
+  @include media('mobile') {
+    padding: $spacer / 2;
+  }
 }
 
 .close {
@@ -20,6 +24,11 @@
   border: 0;
   cursor: pointer;
   transition: opacity $transition;
+
+  @include media('mobile') {
+    top: $spacer / 2;
+    right: $spacer / 2;
+  }
   &:hover {
     opacity: 0.7;
   }

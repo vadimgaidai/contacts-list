@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useFormik } from 'formik'
 
-import { required } from '../../utils/validation'
+import { name } from '../../utils/validation'
 
 import Form from '../../components/Form'
 import Input from '../../components/Input'
 import { setUser } from '../../redux/user'
-import { UserType } from '../../redux/user/types'
 
 import style from './login.module.scss'
 
@@ -21,10 +20,10 @@ const Main: FC = () => {
     initialValues: {
       name: '',
     },
-    validate({ name }) {
-      if (required(name)) {
+    validate({ name: nameValue }) {
+      if (name(nameValue)) {
         return {
-          name: required(name),
+          name: name(nameValue),
         }
       }
       return {}

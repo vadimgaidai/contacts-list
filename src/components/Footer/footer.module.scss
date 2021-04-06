@@ -1,6 +1,10 @@
 .section {
   padding: $spacer;
   text-align: center;
+
+  @include media('mobile') {
+    padding: $spacer / 2;
+  }
 }
 
 .link {

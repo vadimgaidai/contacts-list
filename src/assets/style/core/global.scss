@@ -110,6 +110,10 @@ video {
 
 main {
   padding: 0 $spacer;
+
+  @include media('mobile') {
+    padding: 0 $spacer / 2;
+  }
 }
 
 .app {

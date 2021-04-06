@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 
-import { phone, required } from '../../../utils/validation'
+import { phone, name } from '../../../utils/validation'
 
 import { editContact } from '../../../redux/contacts'
 import { ContactType } from '../../../redux/contacts/types'
@@ -32,10 +32,10 @@ const EditContactModal: FC = () => {
 
   const { handleSubmit, errors, touched, getFieldProps } = useFormik({
     initialValues: { ...oneContact },
-    validate({ name, phone: phoneNumber }) {
-      if (required(name) || phone(phoneNumber)) {
+    validate({ name: nameValue, phone: phoneNumber }) {
+      if (name(nameValue) || phone(phoneNumber)) {
         return {
-          name: required(name),
+          name: name(nameValue),
           phone: phone(phoneNumber),
         }
       }
