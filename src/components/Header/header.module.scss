@@ -2,7 +2,15 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
-  padding: 20px;
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto 0;
+  padding: $spacer;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 32px;
 }
 
 .button {

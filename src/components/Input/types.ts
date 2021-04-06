@@ -4,4 +4,5 @@ export interface InputPropTypes {
   value: string
   placeholder: string
   onInput: (event: ChangeEvent<HTMLInputElement>) => void
+  name?: string
 }

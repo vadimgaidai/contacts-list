@@ -7,14 +7,14 @@ const { actions, reducer } = createSlice({
     contacts: [],
   } as ContactsStateType,
   reducers: {
-    setContacts(
+    addContact(
       state: ContactsStateType,
-      { payload }: PayloadAction<ContactType[]>
+      { payload }: PayloadAction<ContactType>
     ) {
-      state.contacts = payload
+      state.contacts.push(payload)
     },
   },
 })
 
-export const { setContacts } = actions
+export const { addContact } = actions
 export default reducer

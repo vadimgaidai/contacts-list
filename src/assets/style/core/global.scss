@@ -108,6 +108,10 @@ video {
   border: 0;
 }
 
+main {
+  padding: 0 $spacer;
+}
+
 .app {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -129,6 +133,25 @@ video {
     &-active {
       opacity: 0;
       transition: opacity $transition ease-in-out;
+    }
+  }
+}
+
+.transform-bottom {
+  &-enter {
+    transform: translateY(100%);
+
+    &-active {
+      transform: translateY(0);
+      transition: transform $transition ease-in;
+    }
+  }
+
+  &-exit {
+    transform: translateY(0);
+    &-active {
+      transform: translateY(100%);
+      transition: transform $transition ease-in;
     }
   }
 }

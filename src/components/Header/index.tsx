@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { currentTypes } from '../../currentTypes'
 import { selectIsAuth, selectUser } from '../../redux/user/selectors'
-import Button from '../Button'
+
 import style from './header.module.scss'
 
 const Header: FC = () => {
@@ -19,7 +20,7 @@ const Header: FC = () => {
     <header className={style.section}>
       {isAuth && (
         <>
-          <h1>{user?.name}</h1>{' '}
+          <h1 className={style.title}>Hello, {user?.name}</h1>{' '}
           <button className={style.button} type="button" onClick={onLogout}>
             Logout
           </button>
