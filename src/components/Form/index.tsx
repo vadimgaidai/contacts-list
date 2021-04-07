@@ -25,6 +25,7 @@ const Form: FC<FormPropTypes> = ({
       <h2 className={style.title}>{title}</h2>
       {children}
       <Button
+        name="button"
         styleButton={styleButton}
         typeButton="submit"
         disabled={isLoading}

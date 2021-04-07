@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import {
+  Redirect,
   Route,
   Switch,
-  useHistory,
   useLocation,
   withRouter,
 } from 'react-router-dom'
@@ -19,25 +19,23 @@ import NotFound from './pages/NotFound'
 const App: FC = () => {
   const isAuth = useSelector(selectIsAuth)
   const location = useLocation()
-  const history = useHistory()
 
   useEffect(() => {
     window.scroll(0, 0)
   }, [location])
 
-  useEffect(() => {
-    if (!isAuth) {
-      history.push('/login')
-    } else if (location.pathname === '/login') {
-      history.push('/')
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth])
-
   return (
     <Switch>
-      <Route path="/" component={Main} exact />
-      <Route path="/login" component={Login} />
+      <Route exact path="/">
+        {isAuth ? <Main /> : <Redirect to="/login" />}
+      </Route>
+      <Route exact path="/login">
+        {!isAuth && location.pathname === '/login' ? (
+          <Login />
+        ) : (
+          <Redirect to="/" />
+        )}
+      </Route>
       <Route path="/new" component={CreateContactModal} />
       <Route path="/:id/edit" component={EditContactModal} />
       <Route component={NotFound} />

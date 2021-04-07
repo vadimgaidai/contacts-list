@@ -1,10 +1,15 @@
 import { ReactNode, MouseEvent } from 'react'
 
-export interface ButtonPropTypes {
-  children: ReactNode
-  className?: string
+interface LinkPropTypes {
   href?: string
+  to?: string
   target?: string
+}
+
+export interface ButtonPropTypes extends LinkPropTypes {
+  children: ReactNode
+  name: string
+  className?: string
   styleButton?: string
   typeButton?: 'submit' | 'reset' | 'button'
   disabled?: boolean

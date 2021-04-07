@@ -1,45 +1,49 @@
 /* eslint-disable react/button-has-type */
 import { FC } from 'react'
-import style from './button.module.scss'
+import { NavLink } from 'react-router-dom'
+
 import { ButtonPropTypes } from './types'
+
+import style from './button.module.scss'
+
+const components = {
+  nav: NavLink,
+  link: 'a',
+  button: 'button',
+}
 
 const Button: FC<ButtonPropTypes> = ({
   styleButton = 'default',
   typeButton = 'button',
+  name = 'button',
   href,
+  to,
   target = '_self',
   disabled,
   className,
   children,
   onClick,
-}: ButtonPropTypes) =>
-  href ? (
-    <a
+}: ButtonPropTypes) => {
+  // @ts-ignore
+  const TagName = components[name]
+  return (
+    <TagName
+      className={[
+        style.button,
+        style[styleButton],
+        disabled && style.disabled,
+        className,
+      ].join(' ')}
       href={href}
       target={target}
-      className={[
-        style.button,
-        style[styleButton],
-        disabled && style.disabled,
-        className,
-      ].join(' ')}
-    >
-      {children}
-    </a>
-  ) : (
-    <button
-      className={[
-        style.button,
-        style[styleButton],
-        disabled && style.disabled,
-        className,
-      ].join(' ')}
+      to={to}
       disabled={disabled}
       type={typeButton}
       onClick={onClick}
     >
       {children}
-    </button>
+    </TagName>
   )
+}
 
 export default Button

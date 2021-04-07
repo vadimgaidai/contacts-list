@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import style from './nonFound.module.scss'
+import style from './notFound.module.scss'
 
 const NotFound: FC = () => (
   <main className={style.section}>
