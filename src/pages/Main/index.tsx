@@ -1,6 +1,6 @@
-import { FC } from 'react'
+/* eslint-disable jsx-a11y/anchor-has-content */
+import { FC, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { CSVLink } from 'react-csv'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import {
@@ -8,21 +8,36 @@ import {
   selectIsContacts,
 } from '../../redux/contacts/selectors'
 
+import { convertArrayOfObjectsToCSV } from '../../utils/csv'
+
 import Button from '../../components/Button'
 import Contact from '../../components/Contact'
 
 import style from './main.module.scss'
-
-const headers = [
-  { label: 'Id', key: 'id' },
-  { label: 'Name', key: 'name' },
-  { label: 'Phone', key: 'phone' },
-  { label: 'Image', key: 'image' },
-]
+import { ContactType } from '../../redux/contacts/types'
 
 const Main: FC = () => {
+  const linkForDownload = useRef<HTMLAnchorElement | null>(null)
   const contacts = useSelector(selectContacts)
   const isContacts = useSelector(selectIsContacts)
+
+  const onLoadCSV = () => {
+    const csv = convertArrayOfObjectsToCSV<ContactType>({
+      data: contacts,
+    })
+
+    if (!csv) {
+      return
+    }
+
+    const blob = new Blob([csv], {
+      type: 'text/csv;charset=utf-8;',
+    })
+    if (linkForDownload.current) {
+      linkForDownload.current.href = URL.createObjectURL(blob)
+      linkForDownload.current.click()
+    }
+  }
 
   return (
     <main className={style.section}>
@@ -30,12 +45,17 @@ const Main: FC = () => {
         <Button name="nav" to="/new">
           New Contact
         </Button>
-        <Button name="button" disabled={!isContacts} className={style.csv}>
-          <CSVLink data={contacts} headers={headers}>
-            Download CSV
-          </CSVLink>
+        <Button
+          name="button"
+          disabled={!isContacts}
+          className={style.csv}
+          onClick={onLoadCSV}
+        >
+          Download CSV
         </Button>
       </div>
+
+      <a ref={linkForDownload} download="contacts-list.csv" aria-hidden />
 
       <TransitionGroup className={style.grid}>
         {contacts?.map(({ id, image, name, phone }) => (

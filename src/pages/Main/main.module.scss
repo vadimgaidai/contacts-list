@@ -34,23 +34,3 @@
     grid-template-columns: 1fr;
   }
 }
-
-.csv {
-  height: 47px;
-  padding: 0;
-
-  @include media('mobile') {
-    height: 42px;
-  }
-
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    color: white;
-    text-decoration: none;
-  }
-}
