@@ -18,7 +18,7 @@ const Button: FC<ButtonPropTypes> = ({
   name = 'button',
   href,
   to,
-  target = '_self',
+  target,
   disabled,
   className,
   children,

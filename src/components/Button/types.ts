@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactNode, MouseEvent } from 'react'
+import { ButtonHTMLAttributes } from 'react'
 import { NavLinkProps } from 'react-router-dom'
 
 interface LinkPropTypes {
@@ -8,14 +8,11 @@ interface LinkPropTypes {
   target?: string
 }
 
-export interface ButtonPropTypes extends LinkPropTypes {
-  children: ReactNode
-  name: string
-  className?: string
+export interface ButtonPropTypes
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    LinkPropTypes {
   styleButton?: string
   typeButton?: 'submit' | 'reset' | 'button'
-  disabled?: boolean
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 interface IObjectKeys {

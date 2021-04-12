@@ -1,10 +1,9 @@
-import { ReactNode } from 'react'
+import { FormHTMLAttributes } from 'react'
 
-export interface FormPropTypes {
+export interface FormPropTypes extends FormHTMLAttributes<HTMLFormElement> {
   title: string
   styleButton: string
   buttonValue: string
-  isLoading?: boolean
-  children: ReactNode
   onSubmit: () => void
+  isLoading?: boolean
 }

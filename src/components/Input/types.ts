@@ -1,11 +1,6 @@
-import { ChangeEvent } from 'react'
+import { InputHTMLAttributes } from 'react'
 
-export interface InputPropTypes {
-  value: string
-  placeholder: string
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  name?: string
-  type?: string
+export interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
   id?: string
   errorValue?: string
 }
