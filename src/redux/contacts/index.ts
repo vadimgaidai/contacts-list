@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit'
 
-import { sortByFieldName } from '../../utils/sort'
+import { sortByField } from '../../utils/sort'
 
 import { ContactType, ContactsStateType } from './types'
 
@@ -15,7 +15,7 @@ const { actions, reducer } = createSlice({
       { payload }: PayloadAction<ContactType>
     ) {
       state.contacts.push({ id: nanoid(), ...payload })
-      state.contacts.sort(sortByFieldName<ContactType>('name'))
+      state.contacts.sort(sortByField<ContactType>('name'))
     },
     editContact(
       state: ContactsStateType,
@@ -23,7 +23,7 @@ const { actions, reducer } = createSlice({
     ) {
       const index = state.contacts.findIndex(({ id }) => id === payload.id)
       state.contacts.splice(index, 1, payload)
-      state.contacts.sort(sortByFieldName<ContactType>('name'))
+      state.contacts.sort(sortByField<ContactType>('name'))
     },
   },
 })

@@ -10,3 +10,10 @@
   font-weight: 900;
   text-align: center;
 }
+
+.loader {
+  width: 16px;
+  height: 16px;
+  animation: icon infinite 1.5s linear;
+  @include keyframesIcon();
+}

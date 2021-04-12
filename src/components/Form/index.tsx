@@ -1,10 +1,10 @@
 import { FC, SyntheticEvent } from 'react'
+import { Loader } from 'react-feather'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import { FormPropTypes } from './types'
 
 import Button from '../Button'
-import { ReactComponent as ThreeDots } from '../../assets/icons/three-dots.svg'
 
 import style from './form.module.scss'
 
@@ -31,9 +31,14 @@ const Form: FC<FormPropTypes> = ({
         disabled={isLoading}
       >
         <SwitchTransition>
-          {/* @ts-ignore */}
-          <CSSTransition key={isLoading} classNames="fade" timeout={300}>
-            <span>{isLoading ? <ThreeDots /> : buttonValue}</span>
+          <CSSTransition
+            key={isLoading ? 'icon' : 'text'}
+            classNames="fade"
+            timeout={300}
+          >
+            <span>
+              {isLoading ? <Loader className={style.loader} /> : buttonValue}
+            </span>
           </CSSTransition>
         </SwitchTransition>
       </Button>

@@ -2,11 +2,11 @@
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { ButtonPropTypes } from './types'
+import { ButtonPropTypes, ComponentsObject } from './types'
 
 import style from './button.module.scss'
 
-const components = {
+const components: ComponentsObject = {
   nav: NavLink,
   link: 'a',
   button: 'button',
@@ -24,7 +24,6 @@ const Button: FC<ButtonPropTypes> = ({
   children,
   onClick,
 }: ButtonPropTypes) => {
-  // @ts-ignore
   const TagName = components[name]
   return (
     <TagName

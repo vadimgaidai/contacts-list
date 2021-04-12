@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, MouseEvent } from 'react'
+import { NavLinkProps } from 'react-router-dom'
 
 interface LinkPropTypes {
   href?: string
@@ -14,4 +16,15 @@ export interface ButtonPropTypes extends LinkPropTypes {
   typeButton?: 'submit' | 'reset' | 'button'
   disabled?: boolean
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+}
+
+interface IObjectKeys {
+  [key: string]: any
+}
+export interface ComponentsObject extends IObjectKeys {
+  nav: <S = unknown>(
+    props: NavLinkProps<S> & React.RefAttributes<HTMLAnchorElement>
+  ) => React.ReactElement<any, string | React.JSXElementConstructor<any>> | null
+  link: string
+  button: string
 }
